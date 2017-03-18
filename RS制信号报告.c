@@ -2,8 +2,14 @@
 
 int main()
 {
+	char* s1[5]={"unreadable","barely readable, occasional words distinguishable","readable with considerable difficulty","readable with practically no difficulty","perfectly readable"};
+	char* s2[9]={"Faint signals, barely perceptible","Very weak signals","Weak signals","Fair signals","Fairly good signals","Good signals","Moderately strong signals","Strong signals","Extremely strong signals"};	
 	int n,a,b;
 	scanf("%d",&n);
+	a=n/10;
+	b=n%10;	
+	printf("%s, %s.",s2[b-1],s1[a-1]);
+/*
 	if(n>=11&&n<=59)
 	{
 		a=n/10;
@@ -57,5 +63,6 @@ int main()
 				break;															
 		}		
 	}
+	*/
 	return 0;
 }
