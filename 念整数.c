@@ -28,7 +28,7 @@ int main()
 	char* shuziPinyin[10]={"ling","yi","er","san","si","wu","liu","qi","ba","jiu"};
 	if(a<0)printf("fu ");
 	int b=abs(a),i;
-#if 0
+#if 1
 	i=1;
 	while(b/i>=10)
 	{
