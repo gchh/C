@@ -41,6 +41,42 @@ int isPrime(int x)//判断是否是素数
 
 int main()
 {
-	
+	int n;
+	scanf("%d",&n);
+	int isprime;
+	isprime=isPrime(n);
+	if(isprime==1)
+	{
+		printf("%d=%d",n,n);
+	}
+	else
+	{
+		//10以内的素数2，3，5，7
+		int prime[4]={2,3,5,7},result[10];
+		int i,cnt=0,mod=n;
+		for(i=0;i<4;i++)
+		{
+			if(mod%prime[i]==0)
+			{
+				mod=mod/prime[i];
+				result[cnt]=prime[i];
+				cnt++;
+				i--;
+			}
+			if(isPrime(mod))
+			{
+				result[cnt]=mod;
+				break;
+			}
+		}
+		int j;
+		printf("%d=",n);
+		for(j=0;j<=cnt;j++)
+		{
+			if(j==0)printf("%d",result[j]);	
+			else printf("x%d",result[j]);	
+		}
+	}
 	return 0;
 } 
+
