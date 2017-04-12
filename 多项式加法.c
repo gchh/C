@@ -32,7 +32,7 @@
 时间限制：500ms内存限制：32000kb
 */
 #include <stdio.h>
- 
+#if 0
 int main()
 {
 	int a[101],a1[101],b[101],b1[101];
@@ -41,6 +41,7 @@ int main()
 	scanf("%d",&a1[0]);
 	while(a[i]!=0)
 	{
+		if(a[i]>100)return 0;
 		i++;
 		scanf("%d",&a[i]);
 		scanf("%d",&a1[i]);	
@@ -50,6 +51,7 @@ int main()
 	scanf("%d",&b1[0]);
 	while(b[j]!=0)
 	{
+		if(b[j]>100)return 0;
 		j++;
 		scanf("%d",&b[j]);
 		scanf("%d",&b1[j]);	
@@ -110,14 +112,19 @@ int main()
 			m++;			
 		}
 	}
-	int n,p,u,t[101];
-	for(u=0;u<m;u++)
+	int n,p,u,t;
+	for(n=0;n<m;n++)
 	{
-		for(n=u;n<m;n++)
+		for(p=n+1;p<m;p++)	
 		{
-			for(p=n+1;p<m;p++)	
+			if(c[n]<c[p])
 			{
-				if(c[n])
+				u=c[n];
+				c[n]=c[p];
+				c[p]=u;
+				u=c1[n];
+				c1[n]=c1[p];
+				c1[p]=u;					
 			}
 		}
 	}
@@ -140,7 +147,130 @@ int main()
 				if(n==m-1)printf("%dx%d",c1[n],c[n]);
 				else printf("%dx%d+",c1[n],c[n]);
 			}
+			//会出现+-某个数的情况 
 		}
 	}
 	return 0;
 }
+#else
+
+int main()
+{
+	int a[101],a1[101],b[101],b1[101];
+	int i=0,j=0;
+	scanf("%d %d",&a[0],&a1[0]);
+	while(a[i]!=0)
+	{
+    	if(a[i]>100)return 0;
+		i++;
+		scanf("%d %d",&a[i],&a1[i]);
+	}
+
+	scanf("%d %d",&b[0],&b1[0]);
+	while(b[j]!=0)
+	{
+  		if(b[j]>100)return 0;
+		j++;
+		scanf("%d %d",&b[j],&b1[j]);
+	}
+	int c[101],c1[101];
+	int k,h,m;
+	int flag;
+	for(k=0;k<=i;k++)
+	{
+		for(h=0;h<=j;h++)
+		{
+			flag=0;
+			if(a[k]==b[h])
+			{
+				flag=1;
+				break;
+			}
+		}
+		if(flag==1)
+		{
+			c[m]=a[k];
+			c1[m]=a1[k]+b1[h];
+		}
+		else
+		{
+			c[m]=a[k];
+			c1[m]=a1[k];			
+		}
+		m++;
+	}
+	for(k=0;k<=j;k++)
+	{
+		for(h=0;h<=i;h++)
+		{
+			flag=0;
+			if(b[k]==a[h])
+			{
+				flag=1;
+				break;
+			}
+		}
+		if(flag==0)
+		{
+			c[m]=b[k];
+			c1[m]=b1[k];	
+			m++;			
+		}
+	}
+	int u;
+	for(k=0;k<m;k++)
+	{
+		for(h=k+1;h<m;h++)	
+		{
+			if(c[k]<c[h])
+			{
+				u=c[k];
+				c[k]=c[h];
+				c[h]=u;
+				u=c1[k];
+				c1[k]=c1[h];
+				c1[h]=u;					
+			}
+		}
+	}
+	for(k=0;k<m;k++)
+	{
+		if(c1[k]!=0)
+		{
+			if(c[k]==0)
+			{
+				if(k==0)printf("%d",c1[k]);
+				else if(c1[k]<0) printf("%d",c1[k]);
+				else printf("+%d",c1[k]);				
+			}			
+			else if(c[k]==1)
+			{
+				if(k==0)
+				{
+					if(c1[k]==1)printf("x");
+					else if(c1[k]==-1)printf("-x");
+					else printf("%dx",c1[k]);
+				}
+				else if(c1[k]==-1) printf("-x");
+				else if(c1[k]<0) printf("%dx",c1[k]);
+				else if(c1[k]==1) printf("+x");
+				else printf("+%dx",c1[k]);				
+			}			
+			else			
+			{
+				if(k==0)
+				{
+					if(c1[k]==1)printf("x%d",c[k]);
+					else if(c1[k]==-1)printf("-x%d",c[k]);
+					else printf("%dx%d",c1[k],c[k]);
+				}
+				else if(c1[k]==-1) printf("-x%d",c[k]);
+				else if(c1[k]<0) printf("%dx%d",c1[k],c[k]);
+				else if(c1[k]==1) printf("+x%d",c[k]);
+				else printf("+%dx%d",c1[k],c[k]);
+			}
+		}
+	}
+	return 0;
+}
+#endif
