@@ -32,11 +32,12 @@
 时间限制：500ms内存限制：32000kb
 */
 #include <stdio.h>
-#if 0
+
 int main()
 {
 	int a[101],a1[101],b[101],b1[101];
 	int i=0,j=0;
+#if 0
 	scanf("%d",&a[0]);
 	scanf("%d",&a1[0]);
 	while(a[i]!=0)
@@ -56,108 +57,7 @@ int main()
 		scanf("%d",&b[j]);
 		scanf("%d",&b1[j]);	
 	}
-#if 0	
-	int k;
-	for(k=0;k<=i;k++)	
-	{
-		printf("%d %d\n",a[k],a1[k]);
-	}
-	int h;
-	for(h=0;h<=j;h++)	
-	{
-		printf("%d %d\n",b[h],b1[h]);
-	}
-#endif	
-	int c[101],c1[101];
-	int k,h,m;
-	int flag;
-	for(k=0;k<=i;k++)//a b相同 和a 
-	{
-		for(h=0;h<=j;h++)
-		{
-			flag=0;
-			if(a[k]==b[h])
-			{
-				flag=1;
-				break;
-			}
-		}
-		if(flag==1)
-		{
-			c[m]=a[k];
-			c1[m]=a1[k]+b1[h];
-		}
-		else
-		{
-			c[m]=a[k];
-			c1[m]=a1[k];			
-		}
-		m++;
-	}
-	for(k=0;k<=j;k++)//b不同于a 
-	{
-		for(h=0;h<=i;h++)
-		{
-			flag=0;
-			if(b[k]==a[h])
-			{
-				flag=1;
-				break;
-			}
-		}
-		if(flag==0)
-		{
-			c[m]=b[k];
-			c1[m]=b1[k];	
-			m++;			
-		}
-	}
-	int n,p,u,t;
-	for(n=0;n<m;n++)
-	{
-		for(p=n+1;p<m;p++)	
-		{
-			if(c[n]<c[p])
-			{
-				u=c[n];
-				c[n]=c[p];
-				c[p]=u;
-				u=c1[n];
-				c1[n]=c1[p];
-				c1[p]=u;					
-			}
-		}
-	}
-	for(n=0;n<m;n++)
-	{
-		if(c1[n]!=0)
-		{
-			if(c[n]==0)
-			{
-				if(n==m-1)printf("%d",c1[n]);
-				else printf("%d+",c1[n]);
-			}			
-			else if(c[n]==1)
-			{
-				if(n==m-1)printf("%dx",c1[n]);
-				else printf("%dx+",c1[n]);
-			}			
-			else			
-			{
-				if(n==m-1)printf("%dx%d",c1[n],c[n]);
-				else printf("%dx%d+",c1[n],c[n]);
-			}
-			//会出现+-某个数的情况 
-		}
-	}
-	return 0;
-}
 #else
-
-int main()
-{
-	int a[101],a1[101],b[101],b1[101];
-	int i=0,j=0;
 	scanf("%d %d",&a[0],&a1[0]);
 	while(a[i]!=0)
 	{
@@ -173,6 +73,19 @@ int main()
 		j++;
 		scanf("%d %d",&b[j],&b1[j]);
 	}
+#endif
+#if 0	
+	int k;
+	for(k=0;k<=i;k++)	
+	{
+		printf("%d %d\n",a[k],a1[k]);
+	}
+	int h;
+	for(h=0;h<=j;h++)	
+	{
+		printf("%d %d\n",b[h],b1[h]);
+	}
+#endif	
 	int c[101],c1[101];
 	int k,h,m;
 	int flag;
@@ -235,7 +148,7 @@ int main()
 	}
 	for(k=0;k<m;k++)
 	{
-		if(c1[k]!=0)
+		if(c1[k]!=0||c[k]==0)
 		{
 			if(c[k]==0)
 			{
@@ -273,4 +186,4 @@ int main()
 	}
 	return 0;
 }
-#endif
+
