@@ -146,13 +146,16 @@ int main()
 			}
 		}
 	}
+	int not_zero=0,is_zero=0; 
 	for(k=0;k<m;k++)
 	{
-		if(c1[k]!=0||c[k]==0)
+		if(c1[k]!=0)//||c[k]==0)
 		{
+			if(c1[k]!=0)not_zero++;
 			if(c[k]==0)
 			{
-				if(k==0)printf("%d",c1[k]);
+				if(k==0||not_zero==1&&k==m-1)printf("%d",c1[k]);
+				//if(k==0)printf("%d",c1[k]);
 				else if(c1[k]<0) printf("%d",c1[k]);
 				else printf("+%d",c1[k]);				
 			}			
@@ -165,7 +168,8 @@ int main()
 					else printf("%dx",c1[k]);
 				}
 				else if(c1[k]==-1) printf("-x");
-				else if(c1[k]<0) printf("%dx",c1[k]);
+				else if(c1[k]<0||not_zero==1&&c1[k]!=1) printf("%dx",c1[k]);
+				else if(not_zero==1&&c1[k]==1) printf("x");
 				else if(c1[k]==1) printf("+x");
 				else printf("+%dx",c1[k]);				
 			}			
@@ -178,10 +182,16 @@ int main()
 					else printf("%dx%d",c1[k],c[k]);
 				}
 				else if(c1[k]==-1) printf("-x%d",c[k]);
-				else if(c1[k]<0) printf("%dx%d",c1[k],c[k]);
+				else if(c1[k]<0||not_zero==1&&c1[k]!=1) printf("%dx%d",c1[k],c[k]);
+				else if(not_zero==1&&c1[k]==1) printf("x%d",c[k]);
 				else if(c1[k]==1) printf("+x%d",c[k]);
 				else printf("+%dx%d",c1[k],c[k]);
 			}
+		}
+		else
+		{
+			is_zero++;
+			if(is_zero==m)printf("0");
 		}
 	}
 	return 0;
