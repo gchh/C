@@ -154,36 +154,33 @@ int main()
 			if(c1[k]!=0)not_zero++;
 			if(c[k]==0)
 			{
-				if(k==0||not_zero==1&&k==m-1)printf("%d",c1[k]);
-				//if(k==0)printf("%d",c1[k]);
+				if(not_zero==1)printf("%d",c1[k]);
 				else if(c1[k]<0) printf("%d",c1[k]);
 				else printf("+%d",c1[k]);				
 			}			
 			else if(c[k]==1)
 			{
-				if(k==0)
+				if(not_zero==1)//第一个非0项 
 				{
 					if(c1[k]==1)printf("x");
 					else if(c1[k]==-1)printf("-x");
 					else printf("%dx",c1[k]);
 				}
 				else if(c1[k]==-1) printf("-x");
-				else if(c1[k]<0||not_zero==1&&c1[k]!=1) printf("%dx",c1[k]);
-				else if(not_zero==1&&c1[k]==1) printf("x");
+				else if(c1[k]<0) printf("%dx",c1[k]);
 				else if(c1[k]==1) printf("+x");
 				else printf("+%dx",c1[k]);				
 			}			
 			else			
 			{
-				if(k==0)
+				if(not_zero==1)
 				{
 					if(c1[k]==1)printf("x%d",c[k]);
 					else if(c1[k]==-1)printf("-x%d",c[k]);
 					else printf("%dx%d",c1[k],c[k]);
 				}
 				else if(c1[k]==-1) printf("-x%d",c[k]);
-				else if(c1[k]<0||not_zero==1&&c1[k]!=1) printf("%dx%d",c1[k],c[k]);
-				else if(not_zero==1&&c1[k]==1) printf("x%d",c[k]);
+				else if(c1[k]<0) printf("%dx%d",c1[k],c[k]);
 				else if(c1[k]==1) printf("+x%d",c[k]);
 				else printf("+%dx%d",c1[k],c[k]);
 			}
@@ -191,7 +188,7 @@ int main()
 		else
 		{
 			is_zero++;
-			if(is_zero==m)printf("0");
+			if(is_zero==m)printf("0");//全是0 
 		}
 	}
 	return 0;
