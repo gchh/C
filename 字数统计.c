@@ -35,7 +35,7 @@ Delta spokesman Morgan Durant said, "It was a Portland, Oregon, to Atlanta, Geor
 int main()
 {
 	FILE *fp;
-	fp = fopen("E:\\Desktop\\C\\1.txt","r");//打开包含文本的txt文件；
+	fp = fopen("D:\\Users\\atdo\\Desktop\\C\\1.txt","r");//打开包含文本的txt文件；
 	char c;
 	int NumOfWords[10] = {0};
 	int len = 0;
